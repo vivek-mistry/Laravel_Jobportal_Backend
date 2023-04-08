@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\api\CategoryController;
+use App\Http\Controllers\api\JobController;
 use App\Http\Controllers\api\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -26,3 +27,5 @@ Route::post('login', [UserController::class, 'login']);
 Route::post('user-category/update', [UserController::class, 'updateCategory'])->middleware('auth:sanctum');
 
 Route::get('categories', [CategoryController::class, 'list']);
+
+Route::get('jobs', [JobController::class, 'list']);

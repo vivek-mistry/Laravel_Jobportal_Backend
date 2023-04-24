@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Livewire\Category;
+use App\Http\Livewire\Job;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,3 +18,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+
+Route::get('category', Category::class)->name('category');
+Route::get('jobs', Job::class)->name('jobs');

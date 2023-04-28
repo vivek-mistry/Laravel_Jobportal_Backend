@@ -92,6 +92,9 @@ class UserController extends Controller
                 'required',
                 'exists:categories,id'
             ],
+            'user_id'=> [
+                'required'
+            ]
         ]);
 
         if ($validation->fails()) {
@@ -102,7 +105,9 @@ class UserController extends Controller
             ], 422);
         }
 
-        $user = $request->user();
+        // $user = $request->user();
+        // dd($user);
+        $user = User::find($request->user_id);
         $user->category_id = $request_data['category_id'];
         $user->save();
 

@@ -35,7 +35,7 @@
                                         <td>
                                             <button class="btn btn-primary" data-toggle="modal"
                                                 data-target="#editCategoryModal" wire:click="editCategory({{ $value->id }})">Edit</button>
-                                            {{-- <button class="btn btn-danger">Delete</button> --}}
+                                            <button class="btn btn-danger" wire:click="categoryRemovePopUp({{ $value->id }})">Delete</button>
                                         </td>
                                     </tr>
                                 @endforeach
@@ -119,6 +119,33 @@
             </div>
         </div>
     </div>
+
+    <!-- Edit Modal -->
+    <div wire:ignore.self class="modal fade " id="deleteModal" tabindex="-1" role="dialog"
+        aria-labelledby="modelTitleId" aria-hidden="true">
+        <div class="modal-dialog modal-sm" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Delete Category</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times; </span>
+                    </button>
+                </div>
+                <form >
+                    <div class="modal-body">
+
+                        <p>Are you sure?</p>
+
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-danger" wire:click="removeCategory">Delete</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 </div>
 
 @push('scripts')
@@ -130,10 +157,15 @@
 
         window.addEventListener('close-modal', event => {
             $('#addCategoryModal').modal('hide');
+            $('#deleteModal').modal('hide');
         });
 
         window.addEventListener('close-edit-modal', event => {
             $('#editCategoryModal').modal('hide');
+        });
+
+        window.addEventListener('open-delete-modal', event => {
+            $('#deleteModal').modal('show');
         });
     </script>
 @endpush

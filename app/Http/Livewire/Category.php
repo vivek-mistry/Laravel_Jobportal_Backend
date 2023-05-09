@@ -67,6 +67,24 @@ class Category extends Component
         $this->dispatchBrowserEvent('close-modal');
     }
 
+    public function categoryRemovePopUp($category_id)
+    {
+        $this->category_id = $category_id;
+
+        $this->dispatchBrowserEvent('open-delete-modal');
+    }
+
+    public function removeCategory()
+    {
+        $category = ModelsCategory::find($this->category_id);
+        $category->delete();
+        $this->category_id = null;
+        session()->flash('message', 'Category removed successfuly');
+
+        // Close modal
+        $this->dispatchBrowserEvent('close-modal');
+    }
+
     public function resetForm(){
         $this->name = "";
     }

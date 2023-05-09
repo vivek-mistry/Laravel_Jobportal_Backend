@@ -104,4 +104,22 @@ class Job extends Component
         $this->location = "";
         $this->description = "";
     }
+
+    public function jobRemovePopUp($job_id)
+    {
+        $this->job_id = $job_id;
+
+        $this->dispatchBrowserEvent('open-delete-modal');
+    }
+
+    public function removeJob()
+    {
+        $job = Jobs::find($this->job_id);
+        $job->delete();
+        $this->job_id = null;
+        session()->flash('message', 'Jobß removed successfuly');
+
+        // Close modal
+        $this->dispatchBrowserEvent('close-modal');
+    }
 }

@@ -29,3 +29,4 @@ Route::post('user-category/update', [UserController::class, 'updateCategory']);
 Route::get('categories', [CategoryController::class, 'list']);
 
 Route::get('jobs', [JobController::class, 'list']);
+Route::post('jobs/likes/update', [JobController::class, 'job_likes']);

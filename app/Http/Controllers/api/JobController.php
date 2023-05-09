@@ -80,4 +80,24 @@ class JobController extends Controller
             'message'   => "Update status",
         ], 200);
     }
+
+    public function generateResult(Request $request)
+    {
+        $request_data = $request->all();
+
+        $validation  = Validator::make($request_data, [
+            'user_id'=> [
+                'required',
+                'exists:users,id'
+            ]
+        ]);
+
+        if ($validation->fails()) {
+            return response()->json([
+                'status'   => false,
+                'message'   => $validation->errors()->first(),
+                'error'      => $validation->errors()
+            ], 422);
+        }
+    }
 }

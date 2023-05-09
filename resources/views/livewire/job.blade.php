@@ -23,15 +23,15 @@
                         </div>
                         <table class="table table-borderd">
                             <thead>
-                                <th>Name</th>
-
+                                <th>Title</th>
+                                <th>Company Name</th>
                                 <th>Action</th>
                             </thead>
                             <tbody>
                                 @foreach ($jobs as $key => $value)
                                     <tr>
                                         <td>{{ $value->title }}</td>
-
+                                        <td>{{ $value->company_name }}</td>
                                         <td>
                                             <button class="btn btn-primary" data-toggle="modal"
                                                 data-target="#editJobModal" wire:click="editJob({{ $value->id }})">Edit</button>
@@ -63,6 +63,16 @@
                 <form wire:submit.prevent='storeData'>
                     <div class="modal-body">
 
+                        <div class="form-group row">
+                            <label class="col-3">Company Name*</label>
+                            <div class="col-9">
+                                <input type="text" class="form-control" wire:model="company_name">
+                                @error('company_name')
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror
+                            </div>
+
+                        </div>
                         <div class="form-group row">
                             <label class="col-3">Name*</label>
                             <div class="col-9">
@@ -154,7 +164,16 @@
                 </div>
                 <form wire:submit.prevent='updateJobData'>
                     <div class="modal-body">
+                        <div class="form-group row">
+                            <label class="col-3">Company Name*</label>
+                            <div class="col-9">
+                                <input type="text" class="form-control" wire:model="company_name">
+                                @error('company_name')
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror
+                            </div>
 
+                        </div>
                         <div class="form-group row">
                             <label class="col-3">Name*</label>
                             <div class="col-9">

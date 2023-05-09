@@ -13,7 +13,7 @@ class Job extends Component
 
     use WithPagination;
 
-    public $category_id, $title, $job_type, $skills, $location, $description, $job_id;
+    public $category_id, $title, $job_type, $skills, $location, $description, $job_id, $company_name;
 
     public $searchItem;
 
@@ -34,6 +34,7 @@ class Job extends Component
         $this->job_id = $jobs->id;
         $this->category_id = $jobs->category_id;
         $this->title = $jobs->title;
+        $this->company_name = $jobs->company_name;
         $this->job_type = $jobs->job_type;
         $this->skills = $jobs->skills;
         $this->location = $jobs->location;
@@ -45,6 +46,7 @@ class Job extends Component
         $this->validate([
             'category_id' => 'required',
             'title' => 'required',
+            'company_name' => 'required',
             'job_type' => 'required',
             'skills' => 'required',
             'location' => 'required',
@@ -54,6 +56,7 @@ class Job extends Component
         $jobs = Jobs::find($this->job_id);
         $jobs->category_id = $this->category_id;
         $jobs->title = $this->title;
+        $jobs->company_name = $this->company_name;
         $jobs->job_type = $this->job_type;
         $jobs->skills = $this->skills;
         $jobs->location = $this->location;
@@ -73,6 +76,7 @@ class Job extends Component
         $this->validate([
             'category_id' => 'required',
             'title' => 'required',
+            'company_name' => 'required',
             'job_type' => 'required',
             'skills' => 'required',
             'location' => 'required',
@@ -82,6 +86,7 @@ class Job extends Component
         $jobs = new Jobs();
         $jobs->category_id = $this->category_id;
         $jobs->title = $this->title;
+        $jobs->company_name = $this->company_name;
         $jobs->job_type = $this->job_type;
         $jobs->skills = $this->skills;
         $jobs->location = $this->location;
@@ -103,6 +108,7 @@ class Job extends Component
         $this->skills = "";
         $this->location = "";
         $this->description = "";
+        $this->company_name = "";
     }
 
     public function jobRemovePopUp($job_id)

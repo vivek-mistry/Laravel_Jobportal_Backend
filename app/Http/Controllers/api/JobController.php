@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Livewire\Job;
 use App\Models\JobLikes;
 use App\Models\Jobs;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -13,7 +14,22 @@ class JobController extends Controller
 {
     public function list(Request $request)
     {
+        $category_id = null;
+        if($request->get('user_id'))
+        {
+            $user = User::find($request->get('user_id'));
+
+            if($user)
+            {
+                $category_id = $user->category_id;
+            }
+        }
         $job = Jobs::with(['category'])->where('id', '<>', null);
+
+        if($category_id)
+        {
+            $job->where('category_id', '=', $category_id);
+        }
 
         if ($rawperpage = $request->get('rawperpage', null)) {
             $job->take($rawperpage)->skip($request->start);

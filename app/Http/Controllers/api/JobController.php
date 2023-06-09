@@ -4,6 +4,7 @@ namespace App\Http\Controllers\api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Livewire\Job;
+use App\Http\Resources\JobRS;
 use App\Models\JobLikes;
 use App\Models\Jobs;
 use App\Models\User;
@@ -44,15 +45,14 @@ class JobController extends Controller
         {
             return response()->json([
                 'status' => true,
-                'message' => 'Found Jobs',
-                'data'   => $result
+                'message' => 'Jobs not found'
             ]);
         }
 
         return response()->json([
             'status' => true,
             'message' => 'Found Jobs',
-            'data'   => $result
+            'data'   => JobRS::collection($result)
         ]);
     }
 

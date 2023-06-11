@@ -9,6 +9,7 @@ use App\Models\JobLikes;
 use App\Models\Jobs;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 
 class JobController extends Controller
@@ -115,5 +116,42 @@ class JobController extends Controller
                 'error'      => $validation->errors()
             ], 422);
         }
+
+        $user_id = 1;
+
+        /**
+         * Get Unique Skills
+         */
+        $job = DB::table('jobs')->select(DB::raw('group_concat(skills) as skills'))->first();
+        $skills_array = explode(',', $job->skills);
+        $skills_unique = array_unique($skills_array);
+
+        /**
+         * Fetch Job likes
+         */
+        $develop_array = [];
+        foreach($skills_unique as $skill){
+            // dd($skill);
+            $data['skill'] = $skill;
+            $job_likes = JobLikes::where('user_id', $user_id);
+            $job_likes->where('status', 1);
+            $job_likes->whereHas('job', function($query) use($skill){
+                $query->where('skills', 'like', '%' . $skill . '%');
+            });
+            $data['interest_count'] = $job_likes->count();
+            $develop_array[] = $data;
+        }
+
+        $collection = collect ($develop_array);
+
+        // $result = $collection->max('interest_count', 'skill');
+
+        // dd($result);
+
+        return response()->json([
+            'status'   => true,
+            'message'   => "Found result based on your interest",
+            'data'      => $collection
+        ], 200);
     }
 }

@@ -21,4 +21,9 @@ class JobLikes extends Model
         'job_id',
         'status'
     ];
+
+    public function job()
+    {
+        return $this->hasOne(Jobs::class, 'id', 'job_id');
+    }
 }

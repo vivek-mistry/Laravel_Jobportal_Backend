@@ -21,7 +21,7 @@ class JobRS extends JsonResource
             'title' => $jobs->title,
             'company_name' => $jobs->company_name,
             'job_type' => $jobs->job_type,
-            'skills' => explode(',', $jobs->skills),
+            'skills' => ['skill' => explode(',', $jobs->skills)],
             'location' => $jobs->location,
             'description' => $jobs->description,
             'created_at'=> $jobs->created_at,

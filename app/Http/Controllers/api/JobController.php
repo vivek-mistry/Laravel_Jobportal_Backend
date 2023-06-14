@@ -144,7 +144,7 @@ class JobController extends Controller
 
         $collection = collect ($develop_array);
 
-        // $result = $collection->max('interest_count', 'skill');
+        $result = $collection->sortByDesc('interest_count')->take(10);
 
         // dd($result);
 

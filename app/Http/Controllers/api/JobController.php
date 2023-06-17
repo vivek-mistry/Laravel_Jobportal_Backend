@@ -117,8 +117,53 @@ class JobController extends Controller
             ], 422);
         }
 
-        $user_id = 1;
+        $user_id = $request->user_id;
 
+        $collection = $this->logicOfResult($user_id);
+
+        // dd($result);
+
+        return response()->json([
+            'status'   => true,
+            'message'   => "Found result based on your interest",
+            'data'      => $collection
+        ], 200);
+    }
+
+    public function generateViewCloudResult(Request $request)
+    {
+        $request_data = $request->all();
+
+        $validation  = Validator::make($request_data, [
+            'user_id'=> [
+                'required',
+                'exists:users,id'
+            ]
+        ]);
+
+        if ($validation->fails()) {
+            return response()->json([
+                'status'   => false,
+                'message'   => $validation->errors()->first(),
+                'error'      => $validation->errors()
+            ], 422);
+        }
+
+        $user_id = $request->user_id;
+
+        $data['result'] = $this->logicOfResult($user_id);
+
+        // dd($result);
+
+        /**
+         * Return view
+         */
+        return view('cloud_result')->with($data);
+
+    }
+
+    public function logicOfResult($user_id)
+    {
         /**
          * Get Unique Skills
          */
@@ -146,12 +191,6 @@ class JobController extends Controller
 
         $result = $collection->sortByDesc('interest_count')->take(10);
 
-        // dd($result);
-
-        return response()->json([
-            'status'   => true,
-            'message'   => "Found result based on your interest",
-            'data'      => $collection
-        ], 200);
+        return $result;
     }
 }

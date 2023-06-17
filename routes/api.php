@@ -31,3 +31,4 @@ Route::get('categories', [CategoryController::class, 'list']);
 Route::get('jobs', [JobController::class, 'list']);
 Route::post('jobs/likes/update', [JobController::class, 'job_likes']);
 Route::post('generate-result', [JobController::class, 'generateResult']);
+Route::post('cloud-result', [JobController::class, 'generateViewCloudResult']);

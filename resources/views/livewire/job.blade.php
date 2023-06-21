@@ -134,7 +134,8 @@
                         <div class="form-group row">
                             <label class="col-3">Description*</label>
                             <div class="col-9">
-                                <input type="text" class="form-control" wire:model="description">
+                                {{-- <input type="text" class="form-control" wire:model="description"> --}}
+                                <textarea class="form-control" wire:model="description" id="add_description"></textarea>
                                 @error('description')
                                     <span class="text-danger">{{ $message }}</span>
                                 @enderror
@@ -157,7 +158,7 @@
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Update Customer</h5>
+                    <h5 class="modal-title">Update Job</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times; </span>
                     </button>
@@ -235,7 +236,8 @@
                         <div class="form-group row">
                             <label class="col-3">Description*</label>
                             <div class="col-9">
-                                <input type="text" class="form-control" wire:model="description">
+                                {{-- <input type="text" class="form-control" wire:model="description"> --}}
+                                <textarea class="form-control" wire:model="description" id="edit_description"></textarea>
                                 @error('description')
                                     <span class="text-danger">{{ $message }}</span>
                                 @enderror
@@ -283,12 +285,18 @@
 </div>
 
 @push('scripts')
+    <script src="https://cdn.ckbox.io/ckbox/1.5.1/ckbox.js"></script>
     <script>
         // window.addEventListener('close-modal')
         // {
         //     $('#addCustomerModal').modal('hide');
         // }
+        // CKBox.mount(document.getElementById('add_description'), {
 
+        // });
+        // CKBox.mount(document.getElementById('edit_description'), {
+
+        //     });
         window.addEventListener('close-modal', event => {
             $('#addJobModal').modal('hide');
             $('#deleteModal').modal('hide');

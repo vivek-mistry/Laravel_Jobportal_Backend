@@ -86,7 +86,7 @@ class JobController extends Controller
         $job = JobLikes::where('user_id', $request->user_id)->where('job_id', $request->job_id)->first();
         if(!isset($job->id))
         {
-            $job = new Job();
+            $job = new JobLikes();
         }
         $job->user_id = $request->user_id;
         $job->job_id = $request->job_id;

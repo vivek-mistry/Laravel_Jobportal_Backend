@@ -91,6 +91,7 @@ class JobController extends Controller
         $job->user_id = $request->user_id;
         $job->job_id = $request->job_id;
         $job->status = $request->status;
+        $job->save();
 
         return response()->json([
             'status'   => true,

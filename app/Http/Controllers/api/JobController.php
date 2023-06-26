@@ -168,8 +168,16 @@ class JobController extends Controller
         /**
          * Get Unique Skills
          */
-        $job = DB::table('jobs')->select(DB::raw('group_concat(skills) as skills'))->first();
-        $skills_array = explode(',', $job->skills);
+        $jobs = DB::table('jobs')->select(DB::raw('skills'))->get();
+        $skills_array = [];
+        foreach($jobs as $job)
+        {
+            $skills = explode(',', $job->skills);
+            $skills_array = array_merge($skills_array, $skills);
+        }
+        // dd($skills_array);
+
+        // $skills_array = explode(',', $job->skills);
         $skills_unique = array_unique($skills_array);
 
         /**

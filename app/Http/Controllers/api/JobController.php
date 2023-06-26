@@ -198,7 +198,7 @@ class JobController extends Controller
 
         $collection = collect ($develop_array);
 
-        $result = $collection->sortByDesc('interest_count')->take(6);
+        $result = $collection->sortByDesc('interest_count')->take(12);
 
         return $result;
     }

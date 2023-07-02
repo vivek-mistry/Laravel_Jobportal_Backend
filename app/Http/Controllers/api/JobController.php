@@ -152,9 +152,9 @@ class JobController extends Controller
 
         $user_id = $request->user_id;
 
-        $data['result'] = $this->logicOfResult($user_id);
+        $data['result'] = $this->logicOfResult($user_id)->toArray();
 
-        // dd($result);
+        $data['skill_string'] = implode('... ', array_column($data['result'], 'skill'));
 
         /**
          * Return view

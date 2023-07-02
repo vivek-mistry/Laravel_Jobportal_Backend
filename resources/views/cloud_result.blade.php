@@ -3,7 +3,7 @@
 <head>
     <title>Cloud Result</title>
     <style>
-        html,
+        /*html,
         body {
             height: 100vh;
             width: 100vw;
@@ -117,31 +117,75 @@
             ul.cloud * {
                 transition: none !important;
             }
+        }*/
+        body {
+            /* center content */
+            position: absolute;
+            top:0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            /* grid */
+            display: grid;
+            justify-content: center;
+            align-content: center;
+            gap: 5px;
+        }
+        /* base font color for all words */
+        body > div {
+            color: #022f40;
+        }
+        /* twice the size, bold and different color for each second word */
+        body :nth-child(2n) {
+            font-size: 2rem;
+            color: #38aecc;
+            font-weight: bold;
+        }
+        /* vertical orientation and different color for each third word */
+        body :nth-child(3n) {
+            writing-mode: vertical-lr;
+            -webkit-writing-mode: vertical-lr;
+            -ms-writing-mode: vertical-lr;
+            color: #0090c1;
+        }
+        /* triple size and different color for each fourth word */
+        body :nth-child(4n) {
+            font-size: 3rem;
+            color: #183446;
+        }
+        /* quadruple size and different color for each fifth word */
+        body :nth-child(5n) {
+            font-size: 4rem;
+            color: #046e8f;
+        }
+        @foreach ($result as $key => $r)
+            #{{ $key }}{
+                grid-area: {{ $r['skill'] }};
+            }
+        @endforeach
+
+        body{
+            grid-template: '{{ $skill_string }}';
         }
     </style>
 </head>
 
 <body>
+    @php
+    /*
+    @endphp
     <ul class="cloud" role="navigation" aria-label="Webdev word cloud">
         @foreach ($result as $r)
             <li><a href="#" data-weight="{{ rand(0,9) }}">{{ $r['skill'] }}</a></li>
         @endforeach
-        {{-- <li><a href="#" data-weight="4">HTTP</a></li>
-        <li><a href="#" data-weight="1">Ember</a></li>
-        <li><a href="#" data-weight="5">Sass</a></li>
-        <li><a href="#" data-weight="8">HTML</a></li>
-        <li><a href="#" data-weight="6">FlexBox</a></li>
-        <li><a href="#" data-weight="4">API</a></li>
-        <li><a href="#" data-weight="5">VueJS</a></li>
-        <li><a href="#" data-weight="6">Grid</a></li>
-        <li><a href="#" data-weight="2">Rest</a></li>
-        <li><a href="#" data-weight="9">JavaScript</a></li>
-        <li><a href="#" data-weight="3">Animation</a></li>
-        <li><a href="#" data-weight="7">React</a></li>
-        <li><a href="#" data-weight="8">CSS</a></li>
-        <li><a href="#" data-weight="1">Cache</a></li>
-        <li><a href="#" data-weight="3">Less</a></li> --}}
+
     </ul>
+    @php
+        */
+    @endphp
+    @foreach ($result as $key => $r)
+        <div id="{{ $key }}"> {{ $r['skill'] }}</div>
+    @endforeach
 </body>
 
 </html>

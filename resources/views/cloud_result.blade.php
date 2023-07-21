@@ -67,11 +67,11 @@
         }
 
         ul.cloud a[data-weight="8"] {
-            --size: 13;
+            --size: 11;
         }
 
         ul.cloud a[data-weight="9"] {
-            --size: 16;
+            --size: 12;
         }
 
         ul[data-show-value] a::after {

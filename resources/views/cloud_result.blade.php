@@ -43,11 +43,23 @@
         }
 
         ul.cloud a[data-weight="2"] {
-            --size: 1.5;
+            --size: 2;
         }
 
         ul.cloud a[data-weight="3"] {
-            --size: 2;
+            --size: 3;
+        }
+
+        ul.cloud a[data-weight="4"] {
+            --size: 4;
+        }
+
+        ul.cloud a[data-weight="5"] {
+            --size: 5;
+        }
+
+        ul.cloud a[data-weight="6"] {
+            --size: 6;
         }
 
         /*ul.cloud a[data-weight="2"] {

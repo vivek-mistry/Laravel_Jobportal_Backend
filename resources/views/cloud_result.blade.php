@@ -42,6 +42,14 @@
             --size: 1;
         }
 
+        ul.cloud a[data-weight="2"] {
+            --size: 1.5;
+        }
+
+        ul.cloud a[data-weight="3"] {
+            --size: 2;
+        }
+
         /*ul.cloud a[data-weight="2"] {
             --size: 2;
         }

@@ -187,7 +187,7 @@
 </head>
 
 <body>
-    <div style="padding: 10px">
+
     @php
 
     @endphp
@@ -197,7 +197,6 @@
         @endforeach
 
     </ul>
-    </div>
     @php
         /*
     @endphp

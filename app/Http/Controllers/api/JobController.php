@@ -84,6 +84,7 @@ class JobController extends Controller
         }
 
         $job = JobLikes::where('user_id', $request->user_id)->where('job_id', $request->job_id)->first();
+        $user = User::find($request->user_id);
         if(!isset($job->id))
         {
             $job = new JobLikes();
@@ -91,6 +92,7 @@ class JobController extends Controller
         $job->user_id = $request->user_id;
         $job->job_id = $request->job_id;
         $job->status = $request->status;
+        $job->category_id = $user->category_id;
         $job->save();
 
         return response()->json([
@@ -180,6 +182,8 @@ class JobController extends Controller
         // $skills_array = explode(',', $job->skills);
         $skills_unique = array_unique($skills_array);
 
+        $user = User::find($user_id);
+
         /**
          * Fetch Job likes
          */
@@ -189,6 +193,7 @@ class JobController extends Controller
             $data['skill'] = $skill;
             $job_likes = JobLikes::where('user_id', $user_id);
             $job_likes->where('status', 1);
+            $job_likes->where('category_id', $user->category_id);
             $job_likes->whereHas('job', function($query) use($skill){
                 $query->where('skills', 'like', '%' . $skill . '%');
             });

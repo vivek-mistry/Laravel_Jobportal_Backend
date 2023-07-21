@@ -187,6 +187,7 @@
 </head>
 
 <body>
+    <div style="margin: 10px">
     @php
 
     @endphp
@@ -196,6 +197,7 @@
         @endforeach
 
     </ul>
+    </div>
     @php
         /*
     @endphp

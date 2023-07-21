@@ -42,7 +42,7 @@
             --size: 1;
         }
 
-        ul.cloud a[data-weight="2"] {
+        /*ul.cloud a[data-weight="2"] {
             --size: 2;
         }
 
@@ -72,7 +72,7 @@
 
         ul.cloud a[data-weight="9"] {
             --size: 12;
-        }
+        }*/
 
         ul[data-show-value] a::after {
             content: " ("attr(data-weight) ")";

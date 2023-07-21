@@ -187,7 +187,7 @@
 </head>
 
 <body>
-    <div style="margin: 10px">
+    <div style="padding: 10px">
     @php
 
     @endphp
